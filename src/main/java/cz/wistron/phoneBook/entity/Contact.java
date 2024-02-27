@@ -1,19 +1,39 @@
-package cz.wistron.phoneBook;
+package cz.wistron.phoneBook.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 //Creating an entity Contact
+@Entity
 public class Contact {
+
+    @Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private String phoneNumber;
+
     //Parameterized constructor to initialize the values to the properties of te entity
-    public Contact() {}
-    public Contact(Integer id, String firstName, String lastName,String phoneNumber) {
-        this.id = id;
+    public Contact() {
+    }
+
+    public Contact(String firstName, String lastName, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
     }
-    private Integer id;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
+
     //Getters and setters for the properties of the
     public Integer getId() {
         return id;
@@ -47,14 +67,4 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    //Overriding the toString method to return the values of the properties of the entity
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
-        }
-    }
+}
